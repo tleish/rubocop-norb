@@ -1,0 +1,13 @@
+site_name: "A RuboCop extension focused on enforcing NORB (None of Rails Business).  An opinionated approach to separating business logic from Rails framework code."
+repo_url: https://github.com/rubocop-hq/rubocop-norb
+edit_uri: edit/master/manual/
+copyright: "Copyright &copy; 2012-2019 Bozhidar Batsov, tleish and RuboCop contributors"
+docs_dir: manual
+pages:
+- Home: index.md
+- Installation: installation.md
+- Usage: usage.md
+- Cops: cops.md
+- Cops Documentation:
+    - Norb Cops: cops_norb.md
+theme: readthedocs

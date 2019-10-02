@@ -1,0 +1,112 @@
+inherit_from: .rubocop_todo.yml
+
+# This is the configuration used to check the rubocop source code.
+require:
+  - rubocop/cop/internal_affairs
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'spec/support/file_helper.rb'
+    - 'tasks/cops_documentation.rake'
+    - 'spec/project_spec.rb'
+    - 'spec/rubocop/config_spec.rb'
+
+
+Norb:
+  Enabled: false
+  
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+
+Metrics/LineLength:
+  Max: 100
+  
+Naming/PredicateName:
+  # Method define macros for dynamically generated method.
+  MethodDefinitionMacros:
+    - define_method
+    - define_singleton_method
+    - def_node_matcher
+    - def_node_search
+
+Rails:
+  Enabled: false
+
+Style/FormatStringToken:
+  # Because we parse a lot of source codes from strings. Percent arrays
+  # look like unannotated format string tokens to this cop.
+  Exclude:
+    - spec/**/*
+
+Layout/AlignHash:
+  EnforcedHashRocketStyle:
+    - key
+    - table
+  EnforcedColonStyle:
+    - key
+    - table
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+  ExpectedOrder:
+      - module_inclusion
+      - constants
+      - public_class_methods
+      - initializer
+      - instance_methods
+      - protected_methods
+      - private_methods
+
+# Trailing white space is meaningful in code examples
+Layout/TrailingWhitespace:
+  AllowInHeredoc: true
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Lint/InterpolationCheck:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Lint/UselessAccessModifier:
+  MethodCreatingMethods:
+    - 'def_matcher'
+    - 'def_node_matcher'
+
+Lint/BooleanSymbol:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+
+Naming/FileName:
+  Exclude:
+    - lib/rubocop-norb.rb
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+RSpec/PredicateMatcher:
+  EnforcedStyle: explicit
+
+RSpec/NestedGroups:
+  Max: 7
