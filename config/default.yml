@@ -13,7 +13,7 @@ AllCops:
   TargetRailsVersion: ~
 
 Norb/MisplacedBranchingLogic:
-  Description: 'Business logic in these locations is misplaced and should be moved to the correction classes.'
+  Description: 'Branching logic in these locations should be moved to business classes.'
   Enabled: true
   VersionAdded: '0.75'
   BranchMethods:
@@ -28,4 +28,13 @@ Norb/MisplacedBranchingLogic:
     - app/views/**/*.erb
 
 
-
+Norb/NamespacedActiveRecord:
+  Description: 'ActiveRecord models should be namespaced.'
+  Enabled: true
+  VersionAdded: '0.76'
+  ActiveRecordNamespace: Ar
+  ActiveRecordSuperclasses:
+    - ActiveRecord
+    - ApplicationRecord
+  Include:
+    - app/models/**/*.rb

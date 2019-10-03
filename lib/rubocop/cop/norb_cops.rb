@@ -3,3 +3,4 @@
 require_relative 'mixin/target_rails_version'
 
 require_relative 'norb/misplaced_branching_logic'
+require_relative 'norb/namespaced_active_record'
