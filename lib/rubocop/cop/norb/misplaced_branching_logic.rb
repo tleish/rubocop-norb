@@ -202,7 +202,7 @@ module RuboCop
       #     </menu>
       #   ERB
       class MisplacedBranchingLogic < Cop
-        MSG = 'This branching logic should be placed in a business class.'
+        MSG = 'This branching logic should be placed in a business object.'
         BRANCHES = %w[if case resbody and or].freeze
         def initialize(*args)
           super

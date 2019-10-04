@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Cop::Norb::MisplacedBranchingLogic, :config do
     it "registers an offense for #{name}" do
       inspect_source(code)
       expect(cop.messages).to eq(
-        ['This branching logic should be placed in a business class.']
+        ['This branching logic should be placed in a business object.']
       )
     end
   end
