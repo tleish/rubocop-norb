@@ -12,14 +12,14 @@ module RuboCop
       # @example
       #   # bad
       #   # app/models/user.rb
-      #   class User < ActiveRecord::Base;
+      #   class User < ActiveRecord::Base
       #   end
       #
       #
       #   # good
       #   # app/models/ar/user.rb
       #   module Ar
-      #     class User < ActiveRecord::Base;
+      #     class User < ActiveRecord::Base
       #       self.table_name = 'user'
       #     end
       #   end
@@ -36,7 +36,7 @@ module RuboCop
       #
       #   # app/models/ar/user.rb
       #   module Ar
-      #     class User < ActiveRecord::Base;
+      #     class User < ActiveRecord::Base
       #     end
       #   end
       #

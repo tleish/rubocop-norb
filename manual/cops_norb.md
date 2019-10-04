@@ -1,10 +1,55 @@
 # Norb
 
+## Norb/ActiveRecordThroughBusiness
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | - | -
+
+This cop checks to see if ActiveRecord namespace is being called non-business objects.
+Separation of controllers, views, jobs and other node objects should go through
+business logic in order to separate direct access to databases.
+
+Note: namespace config from `Norb/ActiveRecordNamespaced` settings
+
+### Examples
+
+```ruby
+# bad
+# app/controllers/article_controller.rb
+class ArticleController < ApplicationController
+  def show
+    Ar::Article.find(params[:id])
+  end
+end
+
+# good
+# app/controllers/article_controller.rb
+class ArticleController < ApplicationController
+  def show
+    Article.for(params[:id])
+  end
+end
+
+# app/models/article.rb
+class Article
+  def self.for(id)
+    Ar::Article.find(id)
+  end
+end
+```
+
+### Configurable attributes
+
+Name | Default value | Configurable values
+--- | --- | ---
+Include | `app/models/**/*.rb` | Array
+
 ## Norb/MisplacedBranchingLogic
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
 --- | --- | --- | --- | ---
-Enabled | Yes | No | 0.75 | -
+Enabled | Yes | No | - | -
 
 This cop ensures branching logic is only in business classes
 if/else/rescue/and/&&/or/||.
@@ -222,7 +267,7 @@ Include | `app/models/ar/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.er
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
 --- | --- | --- | --- | ---
-Enabled | Yes | No | 0.76 | -
+Enabled | Yes | No | - | -
 
 This cop checks to see if an ActiveRecord model is namespaced.
 Namespacing ActiveRecord models (e.g. Ar::) allows ActiveRecord to be
@@ -233,13 +278,13 @@ separated from business logic, without conflicting names.
 ```ruby
 # bad
 # app/models/user.rb
-class User < ActiveRecord::Base;
+class User < ActiveRecord::Base
 end
 
 # good
 # app/models/ar/user.rb
 module Ar
-  class User < ActiveRecord::Base;
+  class User < ActiveRecord::Base
     self.table_name = 'user'
   end
 end
@@ -255,7 +300,7 @@ end
 
 # app/models/ar/user.rb
 module Ar
-  class User < ActiveRecord::Base;
+  class User < ActiveRecord::Base
   end
 end
 ```
