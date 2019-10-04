@@ -2,7 +2,6 @@
 
 require 'forwardable'
 
-# TODO: when finished, run `rake generate_cops_documentation` to update the docs
 module RuboCop
   module Cop
     module Norb
@@ -42,10 +41,13 @@ module RuboCop
       #   end
       #
       class NamespacedActiveRecord < Cop
-        CONFIG_KEYS = {
-          namespace: 'ActiveRecordNamespace',
-          superclasses: 'ActiveRecordSuperclasses',
-        }
+        CONFIGS = {
+          namespace: OpenStruct.new(key: 'ActiveRecordNamespace', default: :Ar),
+          superclasses: OpenStruct.new(
+            key: 'ActiveRecordSuperclasses',
+            default: %i[ActiveRecord ApplicationRecord]
+          )
+        }.freeze
 
         def on_class(node)
           sub_cop = CLASS_TYPES.map do |active_record_class_type|
@@ -128,32 +130,39 @@ module RuboCop
 
         CLASS_TYPES = [ActiveRecordClassType, NilType].freeze
 
+        # Refinement to get cop configuration from symbol
+        module SymbolToConfigParamRefinement
+          refine Symbol do
+            def value_in(cop_config)
+              configs = Norb::NamespacedActiveRecord::CONFIGS
+              value = yield(cop_config[configs[self].key])
+              if value.empty?
+                configs[self].default
+              else
+                value
+              end
+            end
+          end
+        end
+        using SymbolToConfigParamRefinement
+
         # Cop Configuration wrapper to add namespace and superclass configurations
         class CopConfig
-          CONFIG_KEYS = NamespacedActiveRecord::CONFIG_KEYS
-          # rubocop:disable Metrics/MethodLength
           def self.for(cop_config = {})
-            namespace = if cop_config[CONFIG_KEYS[:namespace]].to_s.empty?
-                          :Ar
-                        else
-                          cop_config[CONFIG_KEYS[:namespace]].to_sym
-                        end
+            namespace = :namespace.value_in(cop_config) do |value|
+              value.to_s.to_sym
+            end
 
-            superclasses = if cop_config[CONFIG_KEYS[:superclasses]].to_a.empty?
-                             %i[ActiveRecord ApplicationRecord]
-                           else
-                             cop_config[CONFIG_KEYS[:superclasses]].to_a.map(&:to_sym)
-                           end
+            superclasses = :superclasses.value_in(cop_config) do |value|
+              value.to_a.map(&:to_sym)
+            end
 
             new(namespace: namespace, superclasses: superclasses)
           end
-          # rubocop:enable Metrics/MethodLength
 
-          attr_reader :active_record_namespace, :active_record_superclass, :namespace, :superclasses
+          attr_reader :active_record_namespace, :active_record_superclass
           def initialize(namespace:, superclasses:)
-            @namespace = namespace
             @active_record_namespace = namespace
-            @superclasses = superclasses
             @active_record_superclass = superclasses
           end
         end
