@@ -46,9 +46,9 @@ module RuboCop
 
         private
 
-        # Get namespace from the Norb::NamespacedActiveRecord class
+        # Get namespace from the Norb::ActiveRecordNamespaced class
         def namespace
-          namespace_class = RuboCop::Cop::Norb::NamespacedActiveRecord
+          namespace_class = RuboCop::Cop::Norb::ActiveRecordNamespaced
           @namespace ||= @config.for_cop(namespace_class.department.to_s)
                                 .merge(@config.for_cop(namespace_class))
                                 .fetch(namespace_class::CONFIGS[:namespace].key)

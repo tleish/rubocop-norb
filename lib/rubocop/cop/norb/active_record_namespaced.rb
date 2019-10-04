@@ -40,7 +40,7 @@ module RuboCop
       #     end
       #   end
       #
-      class NamespacedActiveRecord < Cop
+      class ActiveRecordNamespaced < Cop
         CONFIGS = {
           namespace: OpenStruct.new(key: 'ActiveRecordNamespace', default: :Ar),
           superclasses: OpenStruct.new(
@@ -134,7 +134,7 @@ module RuboCop
         module SymbolToConfigParamRefinement
           refine Symbol do
             def value_in(cop_config)
-              configs = Norb::NamespacedActiveRecord::CONFIGS
+              configs = Norb::ActiveRecordNamespaced::CONFIGS
               value = yield(cop_config[configs[self].key])
               if value.empty?
                 configs[self].default

@@ -1,5 +1,55 @@
 # Norb
 
+## Norb/ActiveRecordNamespaced
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | - | -
+
+This cop checks to see if an ActiveRecord model is namespaced.
+Namespacing ActiveRecord models (e.g. Ar::) allows ActiveRecord to be
+separated from business logic, without conflicting names.
+
+### Examples
+
+```ruby
+# bad
+# app/models/user.rb
+class User < ActiveRecord::Base
+end
+
+# good
+# app/models/ar/user.rb
+module Ar
+  class User < ActiveRecord::Base
+    self.table_name = 'user'
+  end
+end
+
+# good
+# app/models/ar.rb
+module Ar
+  # remove the auto 'ar_' prefix from namespaced Ar::Model(s)
+  def self.table_name_prefix
+    ''
+  end
+end
+
+# app/models/ar/user.rb
+module Ar
+  class User < ActiveRecord::Base
+  end
+end
+```
+
+### Configurable attributes
+
+Name | Default value | Configurable values
+--- | --- | ---
+ActiveRecordNamespace | `Ar` | String
+ActiveRecordSuperclasses | `ActiveRecord`, `ApplicationRecord` | Array
+Include | `app/models/**/*.rb` | Array
+
 ## Norb/ActiveRecordThroughBusiness
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
@@ -262,53 +312,3 @@ Name | Default value | Configurable values
 --- | --- | ---
 BranchMethods | `if`, `and`, `or`, `case`, `resbody` | Array
 Include | `app/models/ar/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.erb` | Array
-
-## Norb/NamespacedActiveRecord
-
-Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
---- | --- | --- | --- | ---
-Enabled | Yes | No | - | -
-
-This cop checks to see if an ActiveRecord model is namespaced.
-Namespacing ActiveRecord models (e.g. Ar::) allows ActiveRecord to be
-separated from business logic, without conflicting names.
-
-### Examples
-
-```ruby
-# bad
-# app/models/user.rb
-class User < ActiveRecord::Base
-end
-
-# good
-# app/models/ar/user.rb
-module Ar
-  class User < ActiveRecord::Base
-    self.table_name = 'user'
-  end
-end
-
-# good
-# app/models/ar.rb
-module Ar
-  # remove the auto 'ar_' prefix from namespaced Ar::Model(s)
-  def self.table_name_prefix
-    ''
-  end
-end
-
-# app/models/ar/user.rb
-module Ar
-  class User < ActiveRecord::Base
-  end
-end
-```
-
-### Configurable attributes
-
-Name | Default value | Configurable values
---- | --- | ---
-ActiveRecordNamespace | `Ar` | String
-ActiveRecordSuperclasses | `ActiveRecord`, `ApplicationRecord` | Array
-Include | `app/models/**/*.rb` | Array

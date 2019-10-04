@@ -19,7 +19,7 @@ AllCops:
 
 Norb:
   Enabled: false
-  
+
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 

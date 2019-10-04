@@ -4,7 +4,7 @@ RSpec.describe RuboCop::Cop::Norb::ActiveRecordThroughBusiness, :config do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do
-    RuboCop::Config.new(RuboCop::Cop::Norb::NamespacedActiveRecord.badge.to_s => cop_config)
+    RuboCop::Config.new(RuboCop::Cop::Norb::ActiveRecordNamespaced.badge.to_s => cop_config)
   end
 
   let(:cop_config) { { 'ActiveRecordNamespace' => 'Ar' } }

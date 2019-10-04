@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Norb::NamespacedActiveRecord, :config do
+RSpec.describe RuboCop::Cop::Norb::ActiveRecordNamespaced, :config do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do

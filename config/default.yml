@@ -25,7 +25,7 @@ Norb/MisplacedBranchingLogic:
     - app/views/**/*.erb
 
 
-Norb/NamespacedActiveRecord:
+Norb/ActiveRecordNamespaced:
   Description: 'ActiveRecord models should be namespaced.'
   Enabled: true
   ActiveRecordNamespace: Ar
