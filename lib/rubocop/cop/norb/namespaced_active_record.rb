@@ -42,6 +42,11 @@ module RuboCop
       #   end
       #
       class NamespacedActiveRecord < Cop
+        CONFIG_KEYS = {
+          namespace: 'ActiveRecordNamespace',
+          superclasses: 'ActiveRecordSuperclasses',
+        }
+
         def on_class(node)
           sub_cop = CLASS_TYPES.map do |active_record_class_type|
             active_record_class_type.new(cop: self, node: node)
@@ -125,18 +130,19 @@ module RuboCop
 
         # Cop Configuration wrapper to add namespace and superclass configurations
         class CopConfig
+          CONFIG_KEYS = NamespacedActiveRecord::CONFIG_KEYS
           # rubocop:disable Metrics/MethodLength
           def self.for(cop_config = {})
-            namespace = if cop_config['ActiveRecordNamespace'].to_s.empty?
+            namespace = if cop_config[CONFIG_KEYS[:namespace]].to_s.empty?
                           :Ar
                         else
-                          cop_config['ActiveRecordNamespace'].to_sym
+                          cop_config[CONFIG_KEYS[:namespace]].to_sym
                         end
 
-            superclasses = if cop_config['ActiveRecordSuperclasses'].to_a.empty?
+            superclasses = if cop_config[CONFIG_KEYS[:superclasses]].to_a.empty?
                              %i[ActiveRecord ApplicationRecord]
                            else
-                             cop_config['ActiveRecordSuperclasses'].to_a.map(&:to_sym)
+                             cop_config[CONFIG_KEYS[:superclasses]].to_a.map(&:to_sym)
                            end
 
             new(namespace: namespace, superclasses: superclasses)
