@@ -3,8 +3,6 @@
 RSpec.describe RuboCop::Cop::Norb::StandardRestfulControllerActions, :config do
   subject(:cop) { described_class.new(config) }
 
-  let(:standard_actions) { %i[index show new edit create update destroy] }
-
   let(:source) do
     <<-RUBY
       module Blog
@@ -33,7 +31,7 @@ RSpec.describe RuboCop::Cop::Norb::StandardRestfulControllerActions, :config do
     end
   end
 
-  context 'when valid controller method contstucts' do
+  context 'when valid controller method constucts' do
     it_behaves_like 'accepts', 'standard Rails RESTFul actions', <<-RUBY
       def index; end          
       def show; end
@@ -55,7 +53,7 @@ RSpec.describe RuboCop::Cop::Norb::StandardRestfulControllerActions, :config do
     RUBY
   end
 
-  context 'when invalid controller method contstucts' do
+  context 'when invalid controller method constucts' do
     it_behaves_like 'offense', 'ajax_products', <<-RUBY
       def index; end          
       def show; end
