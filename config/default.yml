@@ -43,3 +43,9 @@ Norb/MisplacedLogic:
     - app/models/**/*.rb
     - app/controllers/**/*.rb
     - app/views/**/*.rb
+
+Norb/StandardRestfulControllerActions:
+  Description: 'Ensure Rails Controllers only use standard RESTful actions'
+  Enabled: true
+  Include:
+    - app/controllers/**/*_controller.rb

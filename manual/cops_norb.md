@@ -340,3 +340,44 @@ Name | Default value | Configurable values
 --- | --- | ---
 Include | `app/**/*.rb` | Array
 Exclude | `app/models/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.rb` | Array
+
+## Norb/StandardRestfulControllerActions
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | - | -
+
+This cop checks that Rails Controllers only use standard RESTful actions
+(`index`, `show`, `new`, `edit`, `create`, `update` and `destroy`).
+Limiting controllers to only the standard RESTful actions helps ensure
+controllers have single responsibility.
+
+If a new action is not needed that doesn't fit within a controller,
+create a new Controller to handle that action. Adding too many actions
+to an already full controller bloats that controller. Often that new
+controller with a single action will soon include additional related actions.
+
+While following this rule will create more controllers, they will each
+independently be more simple.
+
+### Examples
+
+```ruby
+# bad
+class BlogController < ApplicationController
+  def ajax_comments
+  end
+end
+
+# good
+class BlogCommentsController < ApplicationController
+  def index
+  end
+end
+```
+
+### Configurable attributes
+
+Name | Default value | Configurable values
+--- | --- | ---
+Include | `app/controllers/**/*_controller.rb` | Array

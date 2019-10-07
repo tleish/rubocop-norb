@@ -5,5 +5,6 @@
 * [Norb/ActiveRecordThroughBusiness](cops_norb.md#norbactiverecordthroughbusiness)
 * [Norb/MisplacedBranchingLogic](cops_norb.md#norbmisplacedbranchinglogic)
 * [Norb/MisplacedLogic](cops_norb.md#norbmisplacedlogic)
+* [Norb/StandardRestfulControllerActions](cops_norb.md#norbstandardrestfulcontrolleractions)
 
 <!-- END_COP_LIST -->
