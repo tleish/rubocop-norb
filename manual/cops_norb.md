@@ -341,6 +341,52 @@ Name | Default value | Configurable values
 Include | `app/**/*.rb` | Array
 Exclude | `app/models/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.rb` | Array
 
+## Norb/OneControllerActionInstanceVariable
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | - | -
+
+TODO: Write cop description and example of bad / good code. For every
+`SupportedStyle` and unique configuration, there needs to be examples.
+Examples must have valid Ruby syntax. Do not use upticks.
+
+### Examples
+
+#### EnforcedStyle: bar (default)
+
+```ruby
+# bad
+class BlogController < ApplicationController
+  def index
+    @post = Post.new(blog_id: param[:id])
+    @comments = Comment.new(blog_id: param[:id])
+    # ...
+  end
+end
+
+# good
+class BlogController < ApplicationController
+  def index
+    @blog_post = BlogPost.new(id: param[:id])
+    # ...
+  end
+end
+
+# good
+class BlogController < ApplicationController
+  def index
+    # no instance variables
+  end
+end
+```
+
+### Configurable attributes
+
+Name | Default value | Configurable values
+--- | --- | ---
+Include | `app/controllers/**/*_controller.rb` | Array
+
 ## Norb/StandardRestfulControllerActions
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged

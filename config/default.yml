@@ -44,6 +44,12 @@ Norb/MisplacedLogic:
     - app/controllers/**/*.rb
     - app/views/**/*.rb
 
+Norb/OneControllerActionInstanceVariable:
+  Description: 'Rails Controller actions should only instantiate one instance variable.'
+  Enabled: true
+  Include:
+    - app/controllers/**/*_controller.rb
+
 Norb/StandardRestfulControllerActions:
   Description: 'Ensure Rails Controllers only use standard RESTful actions'
   Enabled: true
