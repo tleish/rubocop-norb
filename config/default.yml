@@ -40,7 +40,7 @@ Norb/MisplacedLogic:
   Exclude:
     - app/models/**/*.rb
     - app/controllers/**/*.rb
-    - app/views/**/*.erb
+    - app/views/**/*.rb
 
 Norb/OneControllerActionInstanceVariable:
   Description: 'Rails Controller actions should only instantiate one instance variable.'

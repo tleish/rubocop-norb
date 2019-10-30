@@ -339,7 +339,7 @@ or lib so that business logic is kept separate from Rails code.
 Name | Default value | Configurable values
 --- | --- | ---
 Include | `app/**/*.rb` | Array
-Exclude | `app/models/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.erb` | Array
+Exclude | `app/models/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.rb` | Array
 
 ## Norb/OneControllerActionInstanceVariable
 
