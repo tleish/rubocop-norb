@@ -99,11 +99,15 @@ module RuboCop
 
           def parent_nodes
             nodes = []
-            node.ancestors.last.each_node(:class, :module) do |child_node|
+            last_ancestor.each_node(:class, :module) do |child_node|
               break if child_node == node
               nodes << child_node
             end
             nodes
+          end
+
+          def last_ancestor
+            node.ancestors.last || RuboCop::AST::Node.new(:nil)
           end
 
           def active_record?

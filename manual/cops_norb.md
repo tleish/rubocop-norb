@@ -93,9 +93,9 @@ end
 
 Name | Default value | Configurable values
 --- | --- | ---
-Include | `app/models/**/*.rb` | Array
+Exclude | `app/models/**/*.rb` | Array
 
-## Norb/MisplacedBranchingLogic
+## Norb/BranchingLogic
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
 --- | --- | --- | --- | ---
@@ -311,7 +311,7 @@ ERB
 Name | Default value | Configurable values
 --- | --- | ---
 BranchMethods | `if`, `and`, `or`, `case`, `resbody` | Array
-Include | `app/models/ar/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.erb` | Array
+Exclude | `app/models/**/*.rb` | Array
 
 ## Norb/MisplacedLogic
 
@@ -339,7 +339,7 @@ or lib so that business logic is kept separate from Rails code.
 Name | Default value | Configurable values
 --- | --- | ---
 Include | `app/**/*.rb` | Array
-Exclude | `app/models/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.rb` | Array
+Exclude | `app/models/**/*.rb`, `app/controllers/**/*.rb`, `app/views/**/*.erb` | Array
 
 ## Norb/OneControllerActionInstanceVariable
 

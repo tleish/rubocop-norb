@@ -201,15 +201,15 @@ module RuboCop
       #       </ul>
       #     </menu>
       #   ERB
-      class MisplacedBranchingLogic < Cop
-        MSG = 'This branching logic should be placed in a business object.'
+      class BranchingLogic < Cop
+        MSG = 'This branching logic is not allowed here.'
         BRANCHES = %w[if case resbody and or].freeze
         def initialize(*args)
           super
           define_branch_methods
         end
 
-        def on_business_method(node)
+        def on_branch(node)
           add_offense(node)
         end
 
@@ -218,7 +218,7 @@ module RuboCop
         def define_branch_methods
           branch_methods.each do |flow|
             define_singleton_method "on_#{flow}" do |node|
-              on_business_method(node)
+              on_branch(node)
             end
           end
         end

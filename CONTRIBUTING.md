@@ -49,7 +49,7 @@ $ rubocop -V
 Here are a few examples:
 
 ```
-* [#123](https://github.com/tleish/rubocop-norb/issues/123): Fixed a regression in the auto-correction logic of `MisplacedBranchingLogic`. ([@tleish][])
+* [#123](https://github.com/tleish/rubocop-norb/issues/123): Fixed a regression in the auto-correction logic of `BranchingLogic`. ([@tleish][])
 * New cop `ActiveRecordNamespace` checks to ensure an ActiveRecord model is namespaced for business isolation. ([@tleish][])
 ```
 

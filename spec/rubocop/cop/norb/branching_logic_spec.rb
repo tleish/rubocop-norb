@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Norb::MisplacedBranchingLogic, :config do
+RSpec.describe RuboCop::Cop::Norb::BranchingLogic, :config do
   subject(:cop) { described_class.new(config) }
 
   shared_examples 'offense' do |name, code|
@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Cop::Norb::MisplacedBranchingLogic, :config do
     it "registers an offense for #{name}" do
       inspect_source(code)
       expect(cop.messages).to eq(
-        ['This branching logic should be placed in a business object.']
+        ['This branching logic is not allowed here.']
       )
     end
   end

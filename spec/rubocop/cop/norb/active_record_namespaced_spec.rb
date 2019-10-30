@@ -101,6 +101,12 @@ RSpec.describe RuboCop::Cop::Norb::ActiveRecordNamespaced, :config do
         end
       end
     RUBY
+
+    it_behaves_like 'offense', 'ApplicationRecord', <<-RUBY
+      class ApplicationRecord < ActiveRecord::Base
+        self.abstract_class = true
+      end
+    RUBY
   end
 
   context 'when custom namespace and ar class' do

@@ -63,7 +63,7 @@ In your `.rubocop.yml`, you may treat the Norb cops just like any other
 cop. For example:
 
 ```yaml
-Norb/MisplacedBranchingLogic:
+Norb/BranchingLogic:
   Include:
     - app/controllers/**/*.rb
 ```
