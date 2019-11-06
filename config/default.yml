@@ -19,13 +19,15 @@ Norb/BranchingLogic:
     - or
     - case
     - resbody
-  Exclude:
-    - app/models/**/*.rb
+  Include:
+    - app/controllers/**/*.rb
+    - app/models/db/**/*.rb
+    - app/views/**/*.erb
 
 Norb/ActiveRecordNamespaced:
   Description: 'ActiveRecord models should be namespaced.'
   Enabled: true
-  ActiveRecordNamespace: Ar
+  ActiveRecordNamespace: DB
   ActiveRecordSuperclasses:
     - ActiveRecord
     - ApplicationRecord
