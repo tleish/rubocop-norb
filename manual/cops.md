@@ -4,7 +4,6 @@
 * [Norb/ActiveRecordNamespaced](cops_norb.md#norbactiverecordnamespaced)
 * [Norb/ActiveRecordThroughBusiness](cops_norb.md#norbactiverecordthroughbusiness)
 * [Norb/BranchingLogic](cops_norb.md#norbbranchinglogic)
-* [Norb/MisplacedLogic](cops_norb.md#norbmisplacedlogic)
 * [Norb/OneControllerActionInstanceVariable](cops_norb.md#norbonecontrolleractioninstancevariable)
 * [Norb/StandardRestfulControllerActions](cops_norb.md#norbstandardrestfulcontrolleractions)
 

@@ -34,14 +34,6 @@ Norb/ActiveRecordNamespaced:
   Include:
     - app/models/**/*.rb
 
-Norb/MisplacedLogic:
-  Description: 'Code should primarily be placed in models and lib.'
-  Enabled: true
-  Include:
-    - app/**/*.rb
-  Exclude:
-    - app/{models,controllers,views}/**/*.rb
-
 Norb/OneControllerActionInstanceVariable:
   Description: 'Rails Controller actions should only instantiate one instance variable.'
   Enabled: true

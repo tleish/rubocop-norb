@@ -10,8 +10,6 @@
 * Adding `Norb/ActiveRecordNamespaced` cop to ensure ActiveRecord models are namespaced. ([@tleish][])
 * Adding `Norb/ActiveRecordThroughBusiness` cop to ensure direct ActiveRecord calls come from business objects. ([@tleish][])
 * Adding `Norb/StandardRestfulControllerActions` cop to ensure code logic is not in the wrong place. ([@tleish][])
-* Adding `Norb/MisplacedLogic` cop checks that Rails Controllers only use standard RESTful actions. ([@tleish][])
 * Adding `Norb/OneControllerActionInstanceVariable` cop checks that Rails Controllers only use standard RESTful actions. ([@tleish][])
-
 
 [@tleish]: https://github.com/tleish
