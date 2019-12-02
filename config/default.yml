@@ -20,8 +20,9 @@ Norb/BranchingLogic:
     - case
     - resbody
   Exclude:
-    - lib/**/*.rb
     - !ruby/regexp /app\/models\/(?!db\/).*\.rb$/
+    - config/environments/**/*.rb
+    - lib/**/*.{rb,rake}
 
 Norb/ActiveRecordNamespaced:
   Description: 'ActiveRecord models should be namespaced.'
