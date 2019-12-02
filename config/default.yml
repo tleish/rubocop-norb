@@ -23,6 +23,8 @@ Norb/BranchingLogic:
     - !ruby/regexp /app\/models\/(?!db\/).*\.rb$/
     - config/environments/**/*.rb
     - lib/**/*.{rb,rake}
+    - spec/**/*.rb
+    - test/**/*.rb
 
 Norb/ActiveRecordNamespaced:
   Description: 'ActiveRecord models should be namespaced.'
