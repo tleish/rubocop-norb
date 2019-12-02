@@ -19,10 +19,9 @@ Norb/BranchingLogic:
     - or
     - case
     - resbody
-  Include:
-    - app/controllers/**/*.rb
-    - app/models/db/**/*.rb
-    - app/views/**/*.erb
+  Exclude:
+    - lib/**/*.rb
+    - !ruby/regexp /app\/models\/(?!db\/).*\.rb$/
 
 Norb/ActiveRecordNamespaced:
   Description: 'ActiveRecord models should be namespaced.'
@@ -40,9 +39,7 @@ Norb/MisplacedLogic:
   Include:
     - app/**/*.rb
   Exclude:
-    - app/models/**/*.rb
-    - app/controllers/**/*.rb
-    - app/views/**/*.rb
+    - app/{models,controllers,views}/**/*.rb
 
 Norb/OneControllerActionInstanceVariable:
   Description: 'Rails Controller actions should only instantiate one instance variable.'
