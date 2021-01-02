@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name = 'rubocop-norb'
   s.version = RuboCop::Norb::Version::STRING
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 2.3.0'
+  s.required_ruby_version = '>= 2.6.0'
   s.authors = ['Bozhidar Batsov', 'tleish']
   s.description = <<-DESCRIPTION
     Automatic NORB (None of Rails Business) code style checking tool.
@@ -32,5 +32,5 @@ Gem::Specification.new do |s|
   # Rack::Utils::SYMBOL_TO_STATUS_CODE, which is used by HttpStatus cop, was
   # introduced in rack 1.1
   s.add_runtime_dependency 'rack', '>= 1.1'
-  s.add_runtime_dependency 'rubocop', '>= 0.72.0'
+  s.add_runtime_dependency 'rubocop', '>= 1.7.0'
 end

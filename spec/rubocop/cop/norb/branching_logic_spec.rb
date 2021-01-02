@@ -64,20 +64,8 @@ RSpec.describe RuboCop::Cop::Norb::BranchingLogic, :config do
       my_var = true ? 1 : 0
     RUBY
 
-    it_behaves_like 'offense', '||', <<-RUBY
-      my_var = false || true
-    RUBY
-
-    it_behaves_like 'offense', 'OR', <<-RUBY
-      my_var = false or true
-    RUBY
-
-    it_behaves_like 'offense', '&&', <<-RUBY
-      my_var = false && true
-    RUBY
-
-    it_behaves_like 'offense', 'and', <<-RUBY
-      my_var = false and true
+    it_behaves_like 'offense', 'rescue', <<-RUBY
+      user.destroy! rescue nil
     RUBY
 
     it_behaves_like 'offense', 'rescue', <<-RUBY

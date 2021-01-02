@@ -15,10 +15,14 @@ Norb/BranchingLogic:
   Enabled: true
   BranchMethods:
     - if
-    - and
-    - or
     - case
     - resbody
+  Include:
+    - app/models/db/**/*.rb
+
+Norb/BinaryOperation:
+  Description: 'This cop checks for binary logic in non-business code.'
+  Enabled: true
   Exclude:
     - !ruby/regexp /app\/models\/(?!db\/).*\.rb$/
     - config/environments/**/*.rb
@@ -47,3 +51,14 @@ Norb/StandardRestfulControllerActions:
   Enabled: true
   Include:
     - app/controllers/**/*_controller.rb
+
+
+Norb/RailsAppTypeNotAllowed:
+  Description: 'These Rails classes/types are not approved.'
+  Enabled: true
+  Include:
+    - app/helpers/**/*.rb
+    - app/services/**/*.rb
+    - app/decorators/**/*.rb
+    - app/policies/**/*.rb
+    - app/support/**/*.rb

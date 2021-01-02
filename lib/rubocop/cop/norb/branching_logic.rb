@@ -4,7 +4,7 @@ module RuboCop
   module Cop
     module Norb
       # This cop ensures branching logic is only in business classes
-      # if/else/rescue/and/&&/or/||.
+      # if/else/rescue.
       #
       # @example Controller Callback
       #   # bad
@@ -203,31 +203,12 @@ module RuboCop
       #   ERB
       class BranchingLogic < Cop
         MSG = 'This branching logic is not allowed here.'
-        BRANCHES = %w[if case resbody and or].freeze
-        def initialize(*args)
-          super
-          define_branch_methods
-        end
 
-        def on_branch(node)
+        def on_if(node)
           add_offense(node)
         end
-
-        private
-
-        def define_branch_methods
-          branch_methods.each do |flow|
-            define_singleton_method "on_#{flow}" do |node|
-              on_branch(node)
-            end
-          end
-        end
-
-        def branch_methods
-          branches = BRANCHES & Array(cop_config['BranchMethods'])
-          return BRANCHES if branches.empty?
-          branches
-        end
+        alias on_case on_if
+        alias on_resbody on_if
       end
     end
   end

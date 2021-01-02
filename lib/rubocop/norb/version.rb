@@ -4,7 +4,7 @@ module RuboCop
   module Norb
     # This module holds the RuboCop Norb version information.
     module Version
-      STRING = '1.0.0'
+      STRING = '1.1.0'
     end
   end
 end

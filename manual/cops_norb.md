@@ -95,6 +95,26 @@ Name | Default value | Configurable values
 --- | --- | ---
 Exclude | `app/models/**/*.rb` | Array
 
+## Norb/BinaryOperation
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | - | -
+
+This cop checks for binary logic in non-business code.
+
+It covers arithmetic operators: `+`, `-`, `*`, `/`, `%`, `**`;
+comparison operators: `==`, `eql?`, `equal?`, `===`, `=~`, `>`, `>=`, `<`, `<=`, `!`, `not`;
+bitwise operators: `|`, `^`, `&`, `<<`, `>>`;
+boolean operators: `&&`, `||`
+and "spaceship" operator - `<=>`.
+
+### Configurable attributes
+
+Name | Default value | Configurable values
+--- | --- | ---
+Exclude | `(?-mix:app\/models\/(?!db\/).*\.rb$)`, `config/environments/**/*.rb`, `lib/**/*.{rb,rake}`, `spec/**/*.rb`, `test/**/*.rb` | Array
+
 ## Norb/BranchingLogic
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
@@ -102,7 +122,7 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 Enabled | Yes | No | - | -
 
 This cop ensures branching logic is only in business classes
-if/else/rescue/and/&&/or/||.
+if/else/rescue.
 
 ### Examples
 
@@ -310,8 +330,8 @@ ERB
 
 Name | Default value | Configurable values
 --- | --- | ---
-BranchMethods | `if`, `and`, `or`, `case`, `resbody` | Array
-Exclude | `(?-mix:app\/models\/(?!db\/).*\.rb$)`, `config/environments/**/*.rb`, `lib/**/*.{rb,rake}` | Array
+BranchMethods | `if`, `case`, `resbody` | Array
+Include | `app/models/db/**/*.rb` | Array
 
 ## Norb/OneControllerActionInstanceVariable
 
@@ -358,6 +378,30 @@ end
 Name | Default value | Configurable values
 --- | --- | ---
 Include | `app/controllers/**/*_controller.rb` | Array
+
+## Norb/RailsAppTypeNotAllowed
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | - | -
+
+This cop ensures restricted rails/app/[types] are not allowed
+
+### Examples
+
+```ruby
+# bad
+app/helpers/foo_helper.rb
+
+# good
+app/models/foo.rb
+```
+
+### Configurable attributes
+
+Name | Default value | Configurable values
+--- | --- | ---
+Include | `app/helpers/**/*.rb`, `app/services/**/*.rb`, `app/decorators/**/*.rb`, `app/policies/**/*.rb`, `app/support/**/*.rb` | Array
 
 ## Norb/StandardRestfulControllerActions
 
