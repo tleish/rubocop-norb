@@ -62,3 +62,11 @@ Norb/RailsAppTypeNotAllowed:
     - app/decorators/**/*.rb
     - app/policies/**/*.rb
     - app/support/**/*.rb
+
+Norb/MisplacedLogic:
+  Description: 'Code should primarily be placed in models and lib.'
+  Enabled: true
+  Include:
+    - app/**/*.rb
+  Exclude:
+    - app/{models,controllers,views}/**/*.rb

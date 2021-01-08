@@ -333,6 +333,34 @@ Name | Default value | Configurable values
 BranchMethods | `if`, `case`, `resbody` | Array
 Include | `app/models/db/**/*.rb` | Array
 
+## Norb/MisplacedLogic
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | - | -
+
+This cop checks to make sure we keep business logic together in designated places.
+
+For example, the preferred location for helper code should be in business models
+or lib so that business logic is kept separate from Rails code.
+
+### Examples
+
+```ruby
+# bad
+# app/helpers/blog_helper.rb
+
+# good
+# app/models/blog/comments.rb
+```
+
+### Configurable attributes
+
+Name | Default value | Configurable values
+--- | --- | ---
+Include | `app/**/*.rb` | Array
+Exclude | `app/{models,controllers,views}/**/*.rb` | Array
+
 ## Norb/OneControllerActionInstanceVariable
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
