@@ -41,12 +41,11 @@ module RuboCop
       #   end
       #
       class ActiveRecordNamespaced < Base
+        Config = Struct.new(:key, :default)
+
         CONFIGS = {
-          namespace: OpenStruct.new(key: 'ActiveRecordNamespace', default: :Ar),
-          superclasses: OpenStruct.new(
-            key: 'ActiveRecordSuperclasses',
-            default: %i[ActiveRecord ApplicationRecord]
-          )
+          namespace: Config.new('ActiveRecordNamespace', :Ar),
+          superclasses: Config.new('ActiveRecordSuperclasses', %i[ActiveRecord ApplicationRecord])
         }.freeze
 
         def on_class(node)
