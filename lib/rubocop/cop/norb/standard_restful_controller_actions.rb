@@ -39,17 +39,9 @@ module RuboCop
           (def {#{RESTFUL_ACTIONS.map(&:inspect).join(' ')}} ...)
         PATTERN
 
-        def_node_matcher :method, <<-PATTERN
-          (def $_ ...)
-        PATTERN
-
         def on_def(node)
           return if restful?(node) || non_public?(node)
-          add_offense(node)
-        end
-
-        def message(node)
-          format(MSG, action: method(node))
+          add_offense(node, message: format(MSG, action: node.method_name))
         end
       end
     end
