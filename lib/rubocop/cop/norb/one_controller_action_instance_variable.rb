@@ -37,23 +37,13 @@ module RuboCop
         include DefNode
         MSG = '`%<action>s` instantiates more than one @instance variable.'
 
-        def_node_matcher :method, <<-PATTERN
-          (def $_method_name ...)
-        PATTERN
-
         def_node_search :instance_variable_names, <<-PATTERN
             (ivasgn $_instance_variable_name ...)
         PATTERN
 
         def on_def(node)
           return if non_public?(node) || instance_variable_names(node).uniq.count <= 1
-          add_offense(node)
-        end
-
-        private
-
-        def message(node)
-          format(MSG, action: method(node))
+          add_offense(node, message: format(MSG, action: node.method_name))
         end
       end
     end
